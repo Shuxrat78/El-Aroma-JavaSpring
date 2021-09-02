@@ -1,0 +1,139 @@
+<form action="/" method="post">
+  @csrf
+  <div class="border border-dark bg-light px-2 py-2">
+
+    <div class="mb-4 text-center fs-4">
+      <p class="text-danger">Saralash qismi</p>
+    </div>
+
+    <div class="accordion" id="accordionExample">
+
+      <div class="accordion-item mb-3 shadow rounded fs-5 mx-2">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Brend
+          </button>
+        </h2>
+
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+            @foreach($brend as $brnd)
+            <div class="form-check">
+              <label class="form-check-label">
+                @if ($brnd->checked == 1)
+                <input class="form-check-input" type="checkbox" name="brend{{$brnd->id}}" value="brend" id="brend-id" checked>
+                @else
+                <input class="form-check-input" type="checkbox" name="brend{{$brnd->id}}" value="brend" id="brend-id">
+                @endif
+
+                {{$brnd->name}}
+              </label>
+
+            </div>
+            @endforeach
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item mb-3 shadow rounded fs-5 mx-2">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Kimga
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+
+            @foreach($category as $categori)
+            <div class="form-check">
+              <label class="form-check-label">
+                @if ($categori->checked == 1)
+                <input class="form-check-input" type="checkbox" name="category{{$categori->id}}" value="category" id="category-id" checked>
+                @else
+                <input class="form-check-input" type="checkbox" name="category{{$categori->id}}" value="category" id="category-id">
+                @endif
+
+                {{$categori->name}}
+              </label>
+
+            </div>
+            @endforeach
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item mb-3 shadow rounded fs-5 mx-2">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Hajmi
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+            @foreach($capacity as $capaciti)
+            <div class="form-check">
+              <label class="form-check-label">
+                @if ($capaciti->checked == 1)
+                <input class="form-check-input" type="checkbox" name="capacity{{$capaciti->id}}" value="capacity" id="capacity-id" checked>
+                @else
+                <input class="form-check-input" type="checkbox" name="capacity{{$capaciti->id}}" value="capacity" id="capacity-id">
+                @endif
+
+                {{$capaciti->cpct}}
+              </label>
+
+            </div>
+            @endforeach
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item mb-3 shadow rounded fs-5 mx-2">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Narxi
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+            <div class="form-check">
+              <label class="form-check-label" for="flexCheckChecked4_1">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4_1">
+                30000 so'm
+              </label>
+            </div>
+
+            <div class="form-check">
+              <label class="form-check-label" for="flexCheckChecked4_2">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4_2">
+                50000 so'm
+              </label>
+            </div>
+
+            <div class="form-check">
+              <label class="form-check-label" for="flexCheckChecked4_3">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4_3">
+                75000 so'm
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-4 fs-4 mb-2">
+      <button type="submit" class="rounded-pill btn btn-warning px-5 mx-3" >Saralash</button>
+      <!-- <button type="reset" class="rounded-pill btn btn-danger px-4 mx-1" >Bekor</button> -->
+    </div>
+
+  </div>
+</form>

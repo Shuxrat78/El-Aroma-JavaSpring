@@ -1,0 +1,41 @@
+<div class="d-flex flex-row flex-wrap">
+<div class="d-grid mx-4 mb-5">
+  <div class="card border border-dark" style="width: 360px;">
+
+    <div class="border-bottom border-dark" style="width: 358px;">
+      <a href="#">
+        <img src="img/{{$prod->fayl_nomi}}" class="img-thumbnail rounded" alt="..." style="width: 358px; height: 250px">
+      </a>
+    </div>
+    <div class="card-body bg-light">
+      <div class="text-wrap" style="width: 330px;">
+        <a href="#">
+          @if($prod->maxs_hajmi == 0)
+          <h5>{{$prod->maxs_nomi}}</h5>
+          @else
+          <h4>{{$prod->maxs_nomi}} {{$prod->maxs_hajmi}} ml</h4>
+          @endif
+        </a>
+      </div>
+      <!-- <p class="card-text fs-5"><b>Hajmi - {{$prod->maxs_hajmi}} ml</b></p> -->
+      <p class="card-text fs-5"><b>Narxi - {{$prod->maxs_narxi}} so'm</b></p>
+      <p class="card-text fs-5"><b>Talab - </b>
+        @for($i=1, $k=2; $i<=5; $i++)
+        @if($i<=$k)
+        <i class="fas fa-star"></i>
+        @else
+        <i class="far fa-star"></i>
+        @endif
+        @endfor
+      </p>
+
+      <div class="mt-3">
+        <a href="#" class="rounded-pill btn btn-success me-2 px-5">Xarid</a>
+        <a href="#" class="rounded-pill btn btn-danger px-5">Savatga</a>
+        <!-- <a href="{{route('contact-data-one', $prod->id)}}"><button class="btn btn-info">Xarid</button></a>
+        <a href="{{route('contact-data-one', $prod->id)}}"><button class="btn btn-info">Savatga</button></a> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>

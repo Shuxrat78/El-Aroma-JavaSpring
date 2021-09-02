@@ -1,0 +1,37 @@
+<div th:fragment="header">
+<div class="d-flex flex-column flex-md-row align-items-center pb-2 mb-4 border-bottom bg-light">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-1 text-danger">El-Aroma</span>
+    </a>
+
+    <nav class="d-inline-flex mt-3 mt-md-0 ms-md-auto fs-5">
+        <span class="fs-4 text-success">+7 977 456 02 43</span>
+    </nav>
+
+    <nav class="d-inline-flex mt-2 md-0 ms-md-auto fs-5">
+<!--        <div class="dropdown fs-5">-->
+<!--            <button class="btn btn-light dropdown-toggle me-3 fs-5 mt-0 pt-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                Maxsulot-->
+<!--            </button>-->
+<!--            <ul class="dropdown-menu fs-5 text-center" aria-labelledby="dropdownMenuButton1">-->
+<!--                <li><a class="dropdown-item" href="/products">Ro'yxati</a></li>-->
+<!--                <li><a class="dropdown-item" href="{{route('brend-view')}}">Brendi</a></li>-->
+<!--                <li><a class="dropdown-item" href="{{route('category-view')}}">Turi</a></li>-->
+<!--                <li><a class="dropdown-item" href="{{route('capacity-view')}}">Hajmi</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <form th:action="@{/login}" method="post">-->
+<!--            <input type="submit" value="Kirish"/>-->
+<!--        </form>-->
+<!--        <a class="me-3 text-dark text-decoration-none" href="@{/login}">Kirish</a>-->
+        <a class="me-3 text-dark text-decoration-none" href="/products">Maxsulot</a>
+        <a class="me-3 text-dark text-decoration-none" href="/productlist">Biz kim</a>
+        <a class="me-3 text-dark text-decoration-none" href="/contact">Aloqa</a>
+        <a class="me-3 text-dark text-decoration-none" href="{{ route('contact-data')}}">Xabarlar</a>
+<!--        <a class="me-3 text-dark text-decoration-none" href="@{/logout}">Chiqish</a>-->
+<!--        <form th:action="@{/logout}" method="post">            -->
+<!--            <input type="submit" value="Chiqish"/>-->
+<!--        </form>-->
+    </nav>
+</div>
+</div>
