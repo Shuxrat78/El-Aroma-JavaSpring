@@ -9,29 +9,25 @@
     </nav>
 
     <nav class="d-inline-flex mt-2 md-0 ms-md-auto fs-5">
-<!--        <div class="dropdown fs-5">-->
-<!--            <button class="btn btn-light dropdown-toggle me-3 fs-5 mt-0 pt-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                Maxsulot-->
-<!--            </button>-->
-<!--            <ul class="dropdown-menu fs-5 text-center" aria-labelledby="dropdownMenuButton1">-->
-<!--                <li><a class="dropdown-item" href="/products">Ro'yxati</a></li>-->
-<!--                <li><a class="dropdown-item" href="{{route('brend-view')}}">Brendi</a></li>-->
-<!--                <li><a class="dropdown-item" href="{{route('category-view')}}">Turi</a></li>-->
-<!--                <li><a class="dropdown-item" href="{{route('capacity-view')}}">Hajmi</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        <form th:action="@{/login}" method="post">-->
-<!--            <input type="submit" value="Kirish"/>-->
-<!--        </form>-->
-<!--        <a class="me-3 text-dark text-decoration-none" href="@{/login}">Kirish</a>-->
-        <a class="me-3 text-dark text-decoration-none" href="/products">Maxsulot</a>
-        <a class="me-3 text-dark text-decoration-none" href="/productlist">Biz kim</a>
-        <a class="me-3 text-dark text-decoration-none" href="/contact">Aloqa</a>
-        <a class="me-3 text-dark text-decoration-none" href="{{ route('contact-data')}}">Xabarlar</a>
-<!--        <a class="me-3 text-dark text-decoration-none" href="@{/logout}">Chiqish</a>-->
-<!--        <form th:action="@{/logout}" method="post">            -->
-<!--            <input type="submit" value="Chiqish"/>-->
-<!--        </form>-->
+        <div class="dropdown fs-5">
+            <button class="btn btn-light dropdown-toggle me-3 fs-5 mt-0 pt-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Продукт
+            </button>
+            <ul class="dropdown-menu fs-5 text-center" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/product">Список</a></li>
+                <li><a class="dropdown-item" href="/products2">Бренд</a></li>
+                <li><a class="dropdown-item" href="/products3">Категория</a></li>
+                <li><a class="dropdown-item" href="/products4">Объем</a></li>
+            </ul>
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <input type="submit" value="Вход"/>
+        </form>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выход"/>
+        </form>
     </nav>
 </div>
 </div>

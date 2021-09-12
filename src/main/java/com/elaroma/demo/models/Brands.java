@@ -10,8 +10,8 @@ public class Brands {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String name;
-    private int checked;
+    private String brand_name;
+    private boolean brand_checked;
 
     public int getId() {
         return id;
@@ -21,19 +21,19 @@ public class Brands {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBrand_name() {
+        return brand_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand_name(String brand_name) {
+        this.brand_name = brand_name;
     }
 
-    public int getChecked() {
-        return checked;
+    public boolean isBrand_checked() {
+        return brand_checked;
     }
 
-    public void setChecked(int checked) {
-        this.checked = checked;
+    public void setBrand_checked(boolean brand_checked) {
+        this.brand_checked = brand_checked;
     }
 }

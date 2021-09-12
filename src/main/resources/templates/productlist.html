@@ -35,8 +35,8 @@
 
             <td th:text="${prod.name}"></td>
             <div th:each="brand : ${brands}">
-                <div th:if="${prod.brend_id == brand.id}">
-            <td th:text="${brand.name}"></td>
+                <div th:if="${prod.brand_id == brand.id}">
+            <td th:text="${brand.brand_name}"></td>
                 </div>
             </div>
             <td th:text="${prod.category_id}"></td>

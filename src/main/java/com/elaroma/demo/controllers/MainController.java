@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-//    @Autowired
-//    private ProductsRepository productsRepository;
-//    @Autowired
-//    private BrandsRepository brandsRepository;
-//    @Autowired
-//    private CategoriesRepository categoriesRepository;
-//    @Autowired
-//    private CapacitiesRepository capacitiesRepository;
-//
-//    Iterable<Products> products = productsRepository.findAll();
-//    Iterable<Brands> brands = brandsRepository.findAll();
-//    Iterable<Categories> categories = categoriesRepository.findAll();
-//    Iterable<Capacities> capacities = capacitiesRepository.findAll();
+    @Autowired
+    private ProductsRepository productsRepository;
+    @Autowired
+    private BrandsRepository brandsRepository;
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+    @Autowired
+    private CapacitiesRepository capacitiesRepository;
 
     @GetMapping("/")
     public String home(Model model) {
 
-//        model.addAttribute("products", products);
-//        model.addAttribute("brands", brands);
-//        model.addAttribute("categories", categories);
-//        model.addAttribute("capacities", capacities);
+        Iterable<Products> products = productsRepository.findAll();
+        Iterable<Brands> brands = brandsRepository.findAll();
+        Iterable<Categories> categories = categoriesRepository.findAll();
+        Iterable<Capacities> capacities = capacitiesRepository.findAll();
+
+        model.addAttribute("products", products);
+        model.addAttribute("brands", brands);
+        model.addAttribute("categories", categories);
+        model.addAttribute("capacities", capacities);
 
         return "home";
     }

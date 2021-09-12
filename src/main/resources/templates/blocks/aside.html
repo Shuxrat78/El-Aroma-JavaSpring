@@ -1,10 +1,14 @@
-<form action="{{route('product-req')}}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
-<!--  @csrf-->
+<div th:fragment="aside">
+<form action="#" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+
   <div class="border border-dark bg-light px-2 py-2">
+
     <div class="mb-4 text-center fs-4">
       <p class="text-danger">Сортировка</p>
     </div>
+
     <div class="accordion" id="accordionPanelsStayOpenExample">
+
       <div class="accordion-item mb-3 shadow rounded fs-5 mx-2">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
@@ -14,19 +18,19 @@
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body">
             <div th:each="brnd : ${brands}">
-            @foreach($brend as $brnd)
-            <div class="form-check">
-              <label class="form-check-label">
-                @if ($brnd->brand_checked == 1)
-                <input class="form-check-input" type="checkbox" name="brend{{$brnd->id}}" value="brand" id="brend-id" checked>
-                @else
-                <input class="form-check-input" type="checkbox" name="brend{{$brnd->id}}" value="brand" id="brend-id">
-                @endif
-                {{$brnd->brand_name}}
-              </label>
-            </div>
-            @endforeach
+              <div class="form-check">
+                <label class="form-check-label">
 
+                  <div th:if="${brnd.brand_checked}">
+                    <input class="form-check-input" type="checkbox" name="brend${brnd.id}" value="brand" checked>
+                  </div>
+                  <div th:if="!${brnd.brand_checked}">
+                    <input class="form-check-input" type="checkbox" name="brend${brnd.id}" value="brand">
+                  </div>
+                    <span th:text="${brnd.brand_name}"></span>
+                  </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -40,19 +44,19 @@
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
           <div class="accordion-body">
 
-            @foreach($category as $categori)
+            <div th:each="categori : ${categories}">
             <div class="form-check">
               <label class="form-check-label">
-                @if ($categori->category_checked == 1)
-                <input class="form-check-input" type="checkbox" name="category{{$categori->id}}" value="category" id="category-id" checked>
-                @else
-                <input class="form-check-input" type="checkbox" name="category{{$categori->id}}" value="category" id="category-id">
-                @endif
-                {{$categori->category_name}}
+                <div th:if="${categori.category_checked}">
+                <input class="form-check-input" type="checkbox" name="category${categori.id}" value="category" id="category-id" checked>
+                </div>
+                <div th:if="!${categori.category_checked}">
+                <input class="form-check-input" type="checkbox" name="category${categori.id}" value="category" id="category-id">
+                </div>
+                <span th:text="${categori.category_name}"></span>
               </label>
             </div>
-            @endforeach
-
+            </div>
           </div>
         </div>
       </div>
@@ -65,19 +69,19 @@
         </h2>
         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
           <div class="accordion-body">
-
-            @foreach($capacity as $capaciti)
+          <div th:each="capaciti : ${capacities}">
             <div class="form-check">
               <label class="form-check-label">
-                @if ($capaciti->capacity_checked == 1)
-                <input class="form-check-input" type="checkbox" name="capacity{{$capaciti->id}}" value="capacity" id="capacity-id" checked>
-                @else
-                <input class="form-check-input" type="checkbox" name="capacity{{$capaciti->id}}" value="capacity" id="capacity-id">
-                @endif
-                {{$capaciti->cpct}}
+                <div th:if="${capaciti.capacity_checked}">
+                <input class="form-check-input" type="checkbox" name="capacity${capaciti.id}" value="capacity" id="capacity-id" checked>
+                </div>
+                <div th:if="!${capaciti.capacity_checked}">
+                <input class="form-check-input" type="checkbox" name="capacity${capaciti.id}" value="capacity" id="capacity-id">
+                </div>
+                <span th:text="${capaciti.cpct}"></span>
               </label>
             </div>
-            @endforeach
+            </div>
           </div>
         </div>
       </div>
@@ -90,11 +94,12 @@
         </h2>
         <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
           <div class="accordion-body">
+
             <div class="input-group mb-3">
               <label class="form-control-label fs-5" for="flexCheckChecked4_1">от</label>
               <div class="col-1"></div>
               <div class="col-8">
-                <input class="form-control fs-6" type="number" min="0" step="5000" name="min" value="{{$mn}}" id="flexCheckChecked4_1">
+                <input class="form-control fs-6" type="number" min="0" step="5000" name="min" value="" id="flexCheckChecked4_1">
               </div>
             </div>
 
@@ -102,7 +107,7 @@
               <label class="form-control-label fs-5" for="flexCheckChecked4_2">до</label>
               <div class="col-1"></div>
               <div class="col-8">
-                <input class="form-control fs-6" type="number" min="0" step="5000" name="max" value="{{$mx}}" id="flexCheckChecked4_2">
+                <input class="form-control fs-6" type="number" min="0" step="5000" name="max" value="" id="flexCheckChecked4_2">
               </div>
             </div>
 
@@ -119,3 +124,4 @@
 
   </div>
 </form>
+</div>

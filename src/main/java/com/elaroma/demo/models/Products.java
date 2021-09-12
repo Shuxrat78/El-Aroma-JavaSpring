@@ -10,7 +10,9 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int brend_id, category_id, capacity_id, price;
+    private int brand_id, category_id, capacity_id, price;
+    private String name, filename;
+    private boolean checked;
 
     public Long getId() {
         return id;
@@ -20,12 +22,12 @@ public class Products {
         this.id = id;
     }
 
-    public int getBrend_id() {
-        return brend_id;
+    public int getBrand_id() {
+        return brand_id;
     }
 
-    public void setBrend_id(int brend_id) {
-        this.brend_id = brend_id;
+    public void setBrand_id(int brand_id) {
+        this.brand_id = brand_id;
     }
 
     public int getCategory_id() {
@@ -68,5 +70,11 @@ public class Products {
         this.filename = filename;
     }
 
-    private String name, filename;
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 }

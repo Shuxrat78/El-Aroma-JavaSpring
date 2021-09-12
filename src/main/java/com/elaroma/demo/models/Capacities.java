@@ -10,8 +10,8 @@ public class Capacities {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String name;
-    private int checked;
+    private String cpct;
+    private boolean capacity_checked;
 
     public int getId() {
         return id;
@@ -21,19 +21,19 @@ public class Capacities {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCpct() {
+        return cpct;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCpct(String cpct) {
+        this.cpct = cpct;
     }
 
-    public int getChecked() {
-        return checked;
+    public boolean isCapacity_checked() {
+        return capacity_checked;
     }
 
-    public void setChecked(int checked) {
-        this.checked = checked;
+    public void setCapacity_checked(boolean capacity_checked) {
+        this.capacity_checked = capacity_checked;
     }
 }
