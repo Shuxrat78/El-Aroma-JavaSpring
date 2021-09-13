@@ -33,7 +33,8 @@
                 <th scope="row" th:text="${rowStat.count}">1</th>
                 <td th:prId="${prod.name}" th:prFn="${prod.filename}" th:onclick="javascript:rasm(this.getAttribute('prId'), this.getAttribute('prFn'))"><img th:src="@{|images/${prod.filename}|}" class="rounded" alt="..." style="width: 45px; height: 35px" data-bs-toggle="modal" data-bs-target="#exampleModal"/></td>
 
-                <td th:text="${prod.name}"></td>
+<!--                <td th:text="${prod.name}"></td>-->
+                <td width="40%"><input type="text" name="name" id="prn${prod.id}" value="${prod.name}" class="form-control shadow bg-body rounded" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required disabled></td>
                 <div th:each="brand : ${brands}">
                     <div th:if="${brand.id == prod.brand_id}">
                         <td th:text="${brand.brand_name}"></td>

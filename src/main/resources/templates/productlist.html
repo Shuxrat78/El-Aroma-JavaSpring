@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -18,79 +18,190 @@
         <thead class="table-primary fs-4">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Foto</th>
-            <th scope="col">Maxsulot nomi</th>
-            <th scope="col">Brend</th>
-            <th scope="col">Turi</th>
-            <th scope="col">Hajmi</th>
-            <th scope="col">Narxi</th>
-            <th scope="col">Amallar</th>
+            <th scope="col">Фото</th>
+            <th scope="col">Наименование товара</th>
+            <th scope="col">Бренд</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Объем</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Действие</th>
         </tr>
         </thead>
-        <tbody class="table-light fs-5">
-        <div th:each="prod,rowStat  : ${products}">
-        <tr>
-            <th scope="row" th:text="${rowStat.count}">1</th>
-            <td th:prId="${prod.name}" th:prFn="${prod.filename}" th:onclick="javascript:rasm(this.getAttribute('prId'), this.getAttribute('prFn'))"><img th:src="'/images/'+${prod.filename}" class="rounded" alt="..." style="width: 45px; height: 35px" data-bs-toggle="modal" data-bs-target="#exampleModal"/></td>
+        <tbody class="fs-5">
+        <div th:each="prod,rowStat : ${products}">
+            <tr>
+                <th scope="row" th:text="${rowStat.count}">1</th>
+                <td th:prId="${prod.id}" th:prNm="${prod.name}" th:prFn="${prod.filename}" th:onclick="javascript:rasm(this.getAttribute('prId'), this.getAttribute('prNm'), this.getAttribute('prFn'))"><img th:src="@{|images/${prod.filename}|}" class="rounded" alt="..." style="width: 45px; height: 35px" data-bs-toggle="modal" data-bs-target="#exampleModal"/></td>
+                <form action="#" method="post">
+                <td width="40%"><input type="text" name="name" th:id="prn+${prod.id}" th:value="${prod.name}" class="form-control shadow bg-white rounded" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required disabled></td>
 
-            <td th:text="${prod.name}"></td>
-            <div th:each="brand : ${brands}">
-                <div th:if="${prod.brand_id == brand.id}">
-            <td th:text="${brand.brand_name}"></td>
+                <td>
+                    <select class="form-select shadow bg-white rounded" name="brend_id" th:id="brn+${prod.id}" disabled>
+                        <div th:each="brand : ${brands}">
+                            <div th:if="${brand.id == prod.brand_id}">
+                                <option th:value="${brand.id}" th:text="${brand.brand_name}" selected></option>
+                            </div>
+                                <option th:value="${brand.id}" th:text="${brand.brand_name}"></option>
+                        </div>
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-select shadow bg-white rounded" name="cat_id" th:id="catn+${prod.id}" disabled>
+                        <div th:each="ctgry : ${categories}">
+                            <div th:if="${ctgry.id == prod.category_id}">
+                                <option th:value="${ctgry.id}" th:text="${ctgry.category_name}" selected></option>
+                            </div>
+                                <option th:value="${ctgry.id}" th:text="${ctgry.category_name}"></option>
+                        </div>
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-select shadow bg-white rounded" name="cap_id" th:id="capn+${prod.id}" disabled>
+                        <div th:each="cpcty : ${capacities}">
+                            <div th:if="${cpcty.id == prod.capacity_id}">
+                                <option th:value="${cpcty.id}" th:text="${cpcty.cpct}" selected></option>
+                            </div>
+                                <option th:value="${cpcty.id}" th:text="${cpcty.cpct}"></option>
+                        </div>
+                    </select>
+                </td>
+
+                <td width="10%">
+                    <input type="number" name="price" th:id="prc+${prod.id}" th:value="${prod.price}" min="0" step="10000" class="form-control shadow bg-white rounded" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" disabled>
+                </td>
+
+                <td th:id="btn+${prod.id}" class="px-0 py-1"><button type="button" th:bprId="${prod.id}" class="btn btn-info me-3 py-0 ms-3" th:onclick="javascript:prod_edit(this.getAttribute('bprId'))"><i class="fas fa-edit"></i></button><button class="btn btn-danger py-0"><i class="fas fa-trash-alt"></i></button></td>
+                <td th:id="bttn+${prod.id}" class="px-0 py-1" hidden><button  type="submit" class="btn btn-info me-3 py-0 ms-3"><i class="fas fa-save"></i></button><button type="button" th:bprId2="${prod.id}" th:onclick="javascript:prod_cancel(this.getAttribute('bprId2'))" class="btn btn-danger py-0"><i class="fas fa-window-close"></i></button></td>
+                </form>
+            </tr>
+
+        </div>
+    </tbody>
+</table>
+
+    <button class="btn btn-success px-4 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal2">Добавить</button>
+
+<!-- Modal-1 begin -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="col-10 centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel"></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"><img src="" id="mb">
+                    </div>
+                    <div class="modal-footer">
+
+                        <div id="fl">
+                            <button type="button" class="btn btn-success" th:onclick="javascript:foto_edit()">Изменить</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> OK </button>
+                        </div>
+
+
+                        <div class="col-8" id="fl1" hidden>
+                            <form action="#" method="post" enctype="multipart/form-data">
+                                <input type="number" name="id" id="id" hidden>
+                                <input type="file" multiple name="file[]" class="form-control shadow bg-white rounded" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                        </div>
+                        <div id="fl2" hidden>
+                            <button type="submit" class="btn btn-success">Сохранить</button>
+                            <button type="button" class="btn btn-secondary" th:onclick="javascript:foto_cancel()">Отмена</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <td th:text="${prod.category_id}"></td>
-            <td th:text="${prod.capacity_id}"></td>
-            <td th:text="${prod.price}"></td>
-            <td class="px-0 py-1"><a href="#"><button class="btn btn-info me-3 py-0"><i class="fas fa-edit"></i></button></a><a href="#"><button class="btn btn-danger py-0"><i class="fas fa-trash-alt"></i></button></a></td>
-        </tr>
         </div>
-        </tbody>
+    </div>
+<!-- Modal-1 end -->
 
-    </table>
-
-    <a href="#" class="btn btn-success me-2 px-5">Yangi</a>
-
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal-2 begin -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="col-10 centered">
+        <div class="centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                    <h2 class="modal-title" id="exampleModal2Label"><i>Ввод нового товара</i></h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body"><img src="" id="mb">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> OK </button>
+
+                <div class="modal-body">
+
+                    <form method="post" action="#" enctype="multipart/form-data">
+
+                            <div th:insert="product_new :: prod_new"></div>
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-danger btn-lg me-3">Очистить</button>
+                            <button type="submit" class="btn btn-success btn-lg me-3">Сохранить</button>
+                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal"> Отмена </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    <!-- Modal-2 end -->
+
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
 
 <script>
-let a;
+let d = 0;  <!-- доступ к редактирование товара в строке таблицы... -->
 
-function rasm(mn, fn){
-document.getElementById("exampleModalLabel").innerHTML = mn;
-
-a = document.getElementById("mb");
-a.width = '600';
-a.src = "images/" + fn;
+function rasm(id, mn, fn){  <!--функция для увеличения и изменения фото-->
+  document.getElementById("id").value = id;
+  document.getElementById("exampleModalLabel").innerHTML = mn;
+  let a;
+  a = document.getElementById("mb");
+  a.width = '600';
+  a.src = "images/" + fn;
 }
 
+function foto_edit(){ // функция изменения фото
+  document.getElementById("fl").setAttribute("hidden","hidden");
+  document.getElementById("fl2").removeAttribute("hidden");
+  document.getElementById("fl1").removeAttribute("hidden");
+}
 
-function rasm2(mn){
-document.getElementById("exampleModalLabel").innerHTML = mn;
-console.log(mn);
+function foto_cancel(){ // функция отмены изменения фото
+  document.getElementById("fl1").setAttribute("hidden","hidden");
+  document.getElementById("fl2").setAttribute("hidden","hidden");
+  document.getElementById("fl").removeAttribute("hidden");
+}
+
+function prod_edit(id){     <!--функция редактирования-->
+  if (d == 0){
+    document.getElementById("prn"+id).removeAttribute("disabled");
+    document.getElementById("brn"+id).removeAttribute("disabled");
+    document.getElementById("catn"+id).removeAttribute("disabled");
+    document.getElementById("capn"+id).removeAttribute("disabled");
+    document.getElementById("prc"+id).removeAttribute("disabled");
+    document.getElementById("btn"+id).setAttribute("hidden","hidden");
+    document.getElementById("bttn"+id).removeAttribute("hidden");
+    d = 1;
+  }
+}
+
+function prod_cancel(id){// отмена редактирования
+  document.getElementById("prn"+id).setAttribute("disabled","disabled");
+  document.getElementById("brn"+id).setAttribute("disabled","disabled");
+  document.getElementById("catn"+id).setAttribute("disabled","disabled");
+  document.getElementById("capn"+id).setAttribute("disabled","disabled");
+  document.getElementById("prc"+id).setAttribute("disabled","disabled");
+  document.getElementById("btn"+id).removeAttribute("hidden");
+  document.getElementById("bttn"+id).setAttribute("hidden","hidden");
+  d = 0;
 }
 
 </script>
-
-<div th:insert="blocks/footer :: footer"></div>
 
 </body>
 </html>
