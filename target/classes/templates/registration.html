@@ -5,17 +5,13 @@
   <title>Spring Security Example </title>
 </head>
 <body>
-<div th:if="${param.error}">
-  Имя пользователя или парол не правильно...
+<div th:if="${error}">
+  Имя пользователя сушествует...
 </div>
-<div th:if="${param.logout}">
-  Вы вышли из системы.
-</div>
-<form th:action="@{/login}" method="post">
+<form th:action="@{/registration}" method="post">
   <div><label> Имя : <input type="text" name="username"/> </label></div>
   <div><label> Парол: <input type="password" name="password"/> </label></div>
-  <div><input type="submit" value="Войти"/></div>
+  <div><input type="submit" value="Сохранить"/></div>
 </form>
-<a href="/registration">Регистрация</a>
 </body>
 </html>
